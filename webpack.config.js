@@ -22,7 +22,17 @@ const config = {
     module: {
         rules: [
             // @TODO js rule
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
             // @TODO css rule
+            {
+                test: /\.css$/,
+                exclude: [/node_modules/],
+                use: ['css-loader', 'style-loader']
+            }
         ],
     },
     // @TODO optimizations
