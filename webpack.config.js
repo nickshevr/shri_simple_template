@@ -4,8 +4,16 @@ const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
 
 const config = {
     entry: {
-        about: './src/pages/About.js',
-        home: './src/pages/Home.js',
+        about: {
+            import: './src/pages/About.js',
+            dependOn: 'shared'
+        },
+        home: {
+             import: './src/pages/Home.js',
+             dependOn: 'shared'
+        },
+        // chunk for lodash
+        shared: 'lodash'
     },
     plugins: [
         new HtmlWebpackPlugin(),
@@ -19,27 +27,41 @@ const config = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
     },
+    mode: 'development',
+    target: 'web',
     module: {
         rules: [
-            // @TODO js rule
+            // js rule
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
+                test: /\.(js|jsx)$/,
+                exclude: [/node_modules/],
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/env','@babel/preset-react']
+                }
             },
-            // @TODO css rule
+            // css rule
             {
                 test: /\.css$/,
                 exclude: [/node_modules/],
-                use: ['css-loader', 'style-loader']
+                use: ['style-loader', 'css-loader']
             }
         ],
     },
-    // @TODO optimizations
-    // @TODO lodash treeshaking
-    // @TODO chunk for lodash
-    // @TODO chunk for runtime
-    // @TODO fallback for crypto
+    // fallback for crypto
+    resolve: {
+        fallback:
+        {
+             "stream": require.resolve("stream-browserify")
+        }
+    },
+    // chunk for runtime
+    // optimizations
+    optimization: {
+        chunkIds: 'size',
+        runtimeChunk: 'single',
+        usedExports: true    // lodash treeshaking
+    },
 };
 
 module.exports = config;
