@@ -4,8 +4,10 @@ on:
   push:
 
   pull_request:
+    
+  pull_request:
     branches:
-      - main
+    - main
 
 jobs:
   commit:
@@ -14,19 +16,19 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-
+        
       - name: build dep
         run: npm install
-
+      
       - name: run lint:js
         run: npm run lint:js
-
+      
       - name: run lint:css
         run: npm run lint:css
-
+      
       - name: final build
         run: npm run start
-
+      
       - name: result
         run: echo "линтеры отработали и билд запустился"
 
@@ -37,15 +39,16 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-
+        
       - name: build dep
         run: npm install
-
+      
       - name: build
         run: npm run build
-
+      
       - name: deploy
         run: npm run deploy
-
+      
       - name: result
         run: echo "деплой готов"
+  
