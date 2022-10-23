@@ -12,11 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     name: commit
     steps:
-      - uses: actions/checkout@master
-      - run:
-          npm install
-          npm run
-          echo "линтеры отработали и билд запустился"
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: build dep
+        run: npm install
+      
+      - name: run
+        run: npm run
+      
+      - name: result
+        run: echo "линтеры отработали и билд запустился"
+
   merge:
     name: merge
     runs-on: ubuntu-latest
