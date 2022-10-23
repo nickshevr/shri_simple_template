@@ -18,8 +18,14 @@ jobs:
       - name: build dep
         run: npm install
       
-      - name: run
-        run: npm run
+      - name: run lint:js
+        run: npm run lint:js
+      
+      - name: run lint:css
+        run: npm run lint:css
+      
+      - name: final build
+        run: npm run start
       
       - name: result
         run: echo "линтеры отработали и билд запустился"
@@ -29,9 +35,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - run: |
-          npm install
-          npm run build
-          npm run deploy
-          echo "деплой готов"
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: build dep
+        run: npm install
+      
+      - name: build
+        run: npm run build
+      
+      - name: deploy
+        run: npm run deploy
+      
+      - name: result
+        run: echo "деплой готов"
   
