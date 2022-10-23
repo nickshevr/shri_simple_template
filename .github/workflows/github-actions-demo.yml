@@ -2,12 +2,10 @@ name: Automatic executions of actions
 
 on:
   push:
-
-  pull_request:
     
   pull_request:
     branches:
-    - main
+    - master
 
 jobs:
   commit:
