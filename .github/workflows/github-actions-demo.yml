@@ -15,9 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - run:
           npm install
-          npm run start
-          npm run lint:js
-          npm run lint:css
+          npm run
           echo "линтеры отработали и билд запустился"
   merge:
     name: merge
