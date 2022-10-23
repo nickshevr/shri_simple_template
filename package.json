@@ -23,7 +23,6 @@
     "start": "webpack serve",
     "build": "webpack",
     "test": "",
-    "lint:fix": "eslint --fix \"src/**\"",
     "lint:js": "eslint \"src/**\"",
     "lint:css": "stylelint \"src/*.css\"",
     "analyze": "webpack --json stats.json",
