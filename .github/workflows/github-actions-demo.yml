@@ -21,6 +21,7 @@ jobs:
   merge:
     name: merge
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - run: |
           npm install
