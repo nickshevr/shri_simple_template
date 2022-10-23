@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { allowedNodeEnvironmentFlags } = require("process");
 const StatoscopePlugin = require("@statoscope/webpack-plugin").default;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const crypto = require('crypto-browserify');
 
 const config = {
   entry: {
@@ -44,7 +43,7 @@ const config = {
       },
     ],
   },
-  // fallback for crypto
+  // fallback for stream
   resolve: {
     fallback: {
       stream: require.resolve("stream-browserify"),
@@ -53,23 +52,16 @@ const config = {
 
   // optimizations
   optimization: {
-    minimize: true,
-    moduleIds: "deterministic",
-    innerGraph: true,
     concatenateModules: true,
-    chunkIds: "size",
+    minimize: true,
+    usedExports: true,
+    innerGraph: true,
+
+    moduleIds: "deterministic",
+    runtimeChunk: "single",
     splitChunks: {
-      minChunks: 1,
       chunks: "all",
-      minSize: 0,
     },
-    runtimeChunk: "single", // chunk for runtime
-    usedExports: true, // lodash treeshaking
-  },
-  performance: {
-    hints: "warning",
-    maxEntrypointSize: 244000,
-    maxAssetSize: 244000,
   },
 };
 
