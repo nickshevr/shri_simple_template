@@ -2,23 +2,50 @@ name: Automatic executions of actions
 
 on:
   push:
-    branches:
-    - main
+
   pull_request:
-    - main
+    branches:
+      - main
 
 jobs:
-  Commit:
-      run: |
-      npm install
-      npm run lint:js
-      npm run lint:css
-      npm run start
-      echo "линтеры отработали и билд запустился"
-  Merge:
-    run: |
-        npm install
-        npm run build
-        npm run deploy
-        echo "деплой готов"
-  
+  commit:
+    runs-on: ubuntu-latest
+    name: commit
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: build dep
+        run: npm install
+
+      - name: run lint:js
+        run: npm run lint:js
+
+      - name: run lint:css
+        run: npm run lint:css
+
+      - name: final build
+        run: npm run start
+
+      - name: result
+        run: echo "линтеры отработали и билд запустился"
+
+  merge:
+    name: merge
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: build dep
+        run: npm install
+
+      - name: build
+        run: npm run build
+
+      - name: deploy
+        run: npm run deploy
+
+      - name: result
+        run: echo "деплой готов"

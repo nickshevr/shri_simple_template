@@ -7,6 +7,7 @@
     "browserify": "^17.0.0",
     "crypto-browserify": "^3.12.0",
     "lodash": "^4.17.21",
+    "pnpm-deduplicate": "^0.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -15,17 +16,20 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "redux-observable": "^2.0.0",
-    "rxjs": "^7.1.0"
+    "rxjs": "^7.1.0",
+    "webpack-bundle-analyzer": "^4.6.1"
   },
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
     "test": "",
+    "lint:fix": "eslint --fix \"src/**\"",
     "lint:js": "eslint \"src/**\"",
     "lint:css": "stylelint \"src/*.css\"",
     "analyze": "webpack --json stats.json",
-    "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
-    "deploy": "gh-pages -d dist"
+    "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
+    "deploy": "gh-pages -d dist",
+    "report": ""
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -40,6 +44,7 @@
     "gh-packages": "^0.3.3",
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "stream-browserify": "^3.0.0",
     "stylelint": "^14.14.0",
     "stylelint-config-standard": "^29.0.0",
