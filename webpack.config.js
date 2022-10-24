@@ -41,6 +41,10 @@ const config = {
         exclude: [/node_modules/],
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.(html)$/,
+        loader: "html-loader",
+      },
     ],
   },
   // fallback for stream
