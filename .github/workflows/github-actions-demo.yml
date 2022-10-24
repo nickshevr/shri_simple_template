@@ -17,7 +17,10 @@ jobs:
         
       - name: build dep
         run: npm install
-      
+
+      - name: fix
+        run: npx eslint --fix "src/*.js"
+
       - name: run lint:js
         run: npm run lint:js
       
