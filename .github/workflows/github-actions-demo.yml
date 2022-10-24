@@ -17,7 +17,13 @@ jobs:
         
       - name: build dep
         run: npm install
-      
+
+      - name: fix js
+        run: npx eslint --fix "src/*.js"
+
+      - name: fix css
+        run: npx stylelint --fix "src/*.css"
+
       - name: run lint:js
         run: npm run lint:js
       
@@ -25,7 +31,7 @@ jobs:
         run: npm run lint:css
       
       - name: final build
-        run: npm run start
+        run: npm run build
       
       - name: result
         run: echo "линтеры отработали и билд запустился"

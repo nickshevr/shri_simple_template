@@ -23,7 +23,7 @@
     "start": "webpack serve",
     "build": "webpack",
     "test": "",
-    "lint:js": "eslint \"src/**/*.js\"",
+    "lint:js": "eslint \"src/*.js\"",
     "lint:css": "stylelint \"**/*.css\" --ignore-pattern 'dist/*'",
     "analyze": "webpack --json stats.json",
     "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
