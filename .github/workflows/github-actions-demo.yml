@@ -31,7 +31,7 @@ jobs:
         run: npm run lint:css
       
       - name: final build
-        run: npm run start
+        run: npm run build
       
       - name: result
         run: echo "линтеры отработали и билд запустился"
