@@ -1,0 +1,24 @@
+name: NodeJS with Webpack
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    types:
+      - created,
+      - updated,
+      - closed
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        npm run build
+        npm run lint:js
+        npm run lint:css
+        
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        npm run deploy
