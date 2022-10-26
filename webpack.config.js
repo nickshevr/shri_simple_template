@@ -6,24 +6,30 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
   entry: {
+    index: "./src/index.js",
     about: "./src/pages/About.js",
     home: "./src/pages/Home.js",
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
     new StatoscopePlugin({
       saveStatsTo: "stats.json",
+      saveReportTo: "report.html",
       saveOnlyStats: false,
       open: false,
     }),
-    new MiniCssExtractPlugin(),
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
   },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+  },
   mode: "development",
-  target: "web",
+  //target: "web",
   module: {
     rules: [
       // js rule
@@ -32,14 +38,17 @@ const config = {
         exclude: [/node_modules/],
         loader: "babel-loader",
         options: {
-          presets: ["@babel/env", "@babel/preset-react"],
+          presets: [
+            "@babel/preset-env",
+            ["@babel/preset-react", { runtime: "automatic" }],
+          ],
         },
       },
       // css rule
       {
         test: /\.css$/,
         exclude: [/node_modules/],
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(html)$/,
