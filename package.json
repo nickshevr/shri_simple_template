@@ -17,7 +17,7 @@
         "rxjs": "^7.1.0"
     },
     "scripts": {
-        "start": "echo \"implement me\"",
+        "start": "react-scripts start",
         "build": "echo \"implement me\"",
         "test": "echo \"implement me\"",
         "lint:js": "echo \"implement me\"",
