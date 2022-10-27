@@ -3,7 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StatoscopePlugin = require("@statoscope/webpack-plugin").default;
 const fs = require("fs");
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
+
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const config = {
   entry: {
@@ -30,22 +32,33 @@ const config = {
           loader: "html-loader",
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".css"],
+    fallback: {
+      stream: require.resolve("stream-browserify"),
+      crypto: require.resolve("crypto-browserify"),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
       inject: true,
-      template:resolveApp('public/index.html'),
+      template: "public/index.html",
     }),
-    // new StatoscopePlugin({
-    //   saveStatsTo: "stats.json",
-    //   saveOnlyStats: false,
-    //   open: false,
-    // }),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
+      PUBLIC_URL: "public",
+    }),
+    new StatoscopePlugin({
+      saveStatsTo: "stats.json",
+      saveOnlyStats: false,
+      open: false,
+    }),
   ],
 
   // @TODO optimizations
