@@ -1,0 +1,60 @@
+name: Automatic executions of actions
+
+on:
+  push:
+    
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    name: commit
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: build dep
+        run: npm install
+
+      - name: fix js
+        run: npx eslint --fix "src/*.js"
+
+      - name: fix css
+        run: npx stylelint --fix "src/*.css"
+
+      - name: run lint:js
+        run: npm run lint:js
+      
+      - name: run lint:css
+        run: npm run lint:css
+      
+      - name: final build
+        run: npm run build
+      
+      - name: result
+        run: echo "линтеры отработали и билд запустился"
+
+  merge:
+    name: merge
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        node-version: [16.x]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      
+      - run: npm run build
+      
+      
+          
+  
