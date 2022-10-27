@@ -14,13 +14,14 @@
         "react-scripts": "4.0.3",
         "redux": "^4.1.0",
         "redux-observable": "^2.0.0",
-        "rxjs": "^7.1.0"
+        "rxjs": "^7.1.0",
+        "typescript": "^4.8.4"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "echo \"implement me\"",
+        "start": "npm run build",
+        "build": "npx webpack --json summary.json",
         "test": "echo \"implement me\"",
-        "lint:js": "echo \"implement me\"",
+        "lint:js": "npx eslint",
         "lint:css": "echo \"implement me\"",
         "analyze": "echo \"implement me\"",
         "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
@@ -33,6 +34,7 @@
         "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
         "@statoscope/webpack-plugin": "^5.24.0",
         "babel-loader": "^8.2.5",
+        "html-loader": "^4.2.0",
         "html-webpack-plugin": "^5.5.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
