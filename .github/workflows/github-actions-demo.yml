@@ -49,8 +49,8 @@ jobs:
 
       - name: setup node
         uses: actions/setup-node@v3
-          with:
-            node-version: ${{ matrix.node-version }}
+        with:
+          node-version: ${{ matrix.node-version }}
         
       - name: build dep
         run: npm ci
