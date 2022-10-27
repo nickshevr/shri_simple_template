@@ -1,7 +1,7 @@
 {
   "name": "unit-demo-cra",
   "version": "0.1.0",
-  "homepage": "http://.",
+  "homepage": "https://.",
   "private": true,
   "dependencies": {
     "lodash": "^4.17.21",
@@ -16,8 +16,8 @@
     "rxjs": "^7.1.0"
   },
   "scripts": {
-    "start": "npx webpack serve --config ./webpack.config.js --mode development",
-    "build": "npx webpack build --config ./webpack.config.js --mode production",
+    "start": "npx webpack serve --config=./webpack.config.js --mode=development",
+    "build": "npx webpack build --config=./webpack.config.js --mode=production",
     "test": "echo \"implement me\"",
     "lint:js": "npx eslint \"**/*.js*\"",
     "lint:css": "npx eslint \"**/*.css*\"",
