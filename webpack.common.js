@@ -1,12 +1,11 @@
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StatoscopePlugin = require("@statoscope/webpack-plugin").default;
-const fs = require("fs");
-const appDirectory = fs.realpathSync(process.cwd());
-const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
-
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-
+const InterpolateHtmlPlugin = require("interpolate-html-plugin");
+const dotenv = require("dotenv");
+dotenv.config();
 const config = {
   entry: {
     about: "./src/pages/About.js",
@@ -40,18 +39,25 @@ const config = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".css"],
-    fallback: {
-      stream: require.resolve("stream-browserify"),
-      crypto: require.resolve("crypto-browserify"),
-    },
+    // fallback: {
+    //   stream: require.resolve("stream-browserify"),
+    //   crypto: require.resolve("crypto-browserify"),
+    // },
   },
   plugins: [
+    new NodePolyfillPlugin(),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
     new HtmlWebpackPlugin({
       filename: "index.html",
       inject: true,
       template: "public/index.html",
     }),
-    new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
+    new InterpolateHtmlPlugin({
       PUBLIC_URL: "public",
     }),
     new StatoscopePlugin({

@@ -1,12 +1,10 @@
 const path = require('path')
 module.exports = {
     mode: 'development',
-    devServer:{ 
-        static: {
-            publicPath: path.join(__dirname, 'dist')
-        },
-        open:true,
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 3000
-        }
+        port: 9000,
+        open: true
+      },
 }
