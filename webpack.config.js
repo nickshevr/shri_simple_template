@@ -4,22 +4,34 @@ const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
 
 const config = {
   mode: 'development',
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 9000,
+    open: true,
+  },
   entry: {
-    about: './src/pages/About.js',
-    home: './src/pages/Home.js',
+    main: './src/index.js',
+  },
+  optimization: {
+    splitChunks: {
+      minSize: 10000,
+      maxSize: 250000,
+    },
+    runtimeChunk: {
+      name: 'runtime',
+    },
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
     new StatoscopePlugin({
+      saveReportTo: 'report.html',
       saveStatsTo: 'stats.json',
       saveOnlyStats: false,
       open: false,
     }),
   ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-  },
   module: {
     rules: [
       {
@@ -29,7 +41,10 @@ const config = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: [
+                '@babel/preset-env',
+                ['@babel/preset-react', { runtime: 'automatic' }],
+              ],
             },
           },
         ],
@@ -52,11 +67,14 @@ const config = {
       },
     ],
   },
-  // @TODO optimizations
-  // @TODO lodash treeshaking
-  // @TODO chunk for lodash
-  // @TODO chunk for runtime
-  // @TODO fallback for crypto
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+    library: {
+      name: 'UUID',
+      type: 'var',
+    },
+  },
 };
 
 module.exports = config;
