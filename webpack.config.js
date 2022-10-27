@@ -6,14 +6,16 @@ const config = {
     entry: {
         about: './src/pages/About.js',
         home: './src/pages/Home.js',
+        index: './src/index.js'
     },
+
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({template: 'public/index.html'}),
         new StatoscopePlugin({
             saveStatsTo: 'stats.json',
             saveOnlyStats: false,
             open: false,
-        }),
+        })
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -21,15 +23,38 @@ const config = {
     },
     module: {
         rules: [
-            // @TODO js rule
-            // @TODO css rule
+            {
+                test: /\.(js)$/,
+                loader: "babel-loader",
+                options: {
+                    presets: [
+                        "@babel/env",
+                        ["@babel/preset-react", {"runtime": "automatic"}]
+                    ],
+                },
+            },
+            { test: /\.css$/, use: 'css-loader' }
         ],
     },
-    // @TODO optimizations
-    // @TODO lodash treeshaking
-    // @TODO chunk for lodash
-    // @TODO chunk for runtime
-    // @TODO fallback for crypto
+    resolve: {
+        fallback: {
+            stream: false
+        },
+    },
+    mode: 'development',
+    optimization: {
+        providedExports: true,
+        usedExports: true,
+        runtimeChunk: "single",
+        splitChunks: {
+            chunks: "all",
+        },
+        innerGraph: true,
+        moduleIds: "deterministic",
+        concatenateModules: true,
+        minimize: true,
+    },
+
 };
 
 module.exports = config;

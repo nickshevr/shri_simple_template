@@ -1,7 +1,7 @@
 {
     "name": "unit-demo-cra",
     "version": "0.1.0",
-    "homepage": ".",
+    "homepage": "https://tizerr.github.io/shri_simple_template/",
     "private": true,
     "dependencies": {
         "crypto-browserify": "^3.12.0",
@@ -17,13 +17,14 @@
         "rxjs": "^7.1.0"
     },
     "scripts": {
-        "start": "echo \"implement me\"",
-        "build": "echo \"implement me\"",
-        "test": "echo \"implement me\"",
-        "lint:js": "echo \"implement me\"",
-        "lint:css": "echo \"implement me\"",
-        "analyze": "echo \"implement me\"",
-        "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
+        "start": "webpack serve",
+        "build": "webpack",
+        "test": "",
+        "lint:js": "eslint --fix \"**/*.js\"",
+        "lint:css": "stylelint --fix \"**/*.css\"",
+        "analyze": "webpack --json stats.json",
+        "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
         "@babel/core": "^7.19.3",
@@ -32,8 +33,15 @@
         "@statoscope/cli": "^5.24.0",
         "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
         "@statoscope/webpack-plugin": "^5.24.0",
+        "@typescript-eslint/eslint-plugin": "^5.41.0",
+        "@typescript-eslint/parser": "^5.41.0",
         "babel-loader": "^8.2.5",
+        "eslint": "^7.32.0",
+        "eslint-plugin-react": "^7.31.10",
+        "gh-pages": "^4.0.0",
         "html-webpack-plugin": "^5.5.0",
+        "stylelint": "^14.14.0",
+        "stylelint-config-standard": "^29.0.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
         "webpack-dev-server": "^3.11.1"
