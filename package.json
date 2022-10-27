@@ -17,13 +17,14 @@
         "redux-observable": "^2.0.0",
         "rxjs": "^7.1.0",
         "stream": "^0.0.2",
+        "stylelint-config-standard": "^29.0.0",
         "uuid": "^9.0.0"
     },
     "scripts": {
         "start": "webpack serve",
         "build": "npx webpack",
         "test": "echo \"test)\"",
-        "lint:js": "eslint '**/*.{js,jsx}' --fix",
+        "lint:js": "eslint 'src/**.{js,jsx}'",
         "lint:css": "npx stylelint **/*.css",
         "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
         "deploy": "npx gh-pages -d dist"

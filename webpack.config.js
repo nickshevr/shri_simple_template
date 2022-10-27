@@ -13,6 +13,10 @@ const config = {
     main: './src/index.js',
   },
   optimization: {
+    minimize: true,
+    moduleIds: 'deterministic',
+    innerGraph: true,
+    concatenateModules: true,
     splitChunks: {
       minSize: 10000,
       maxSize: 250000,
