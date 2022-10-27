@@ -40,19 +40,31 @@ jobs:
     name: merge
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-      - name: checkout
-        uses: actions/checkout@master
+      - name: first step
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
         
       - name: build dep
-        run: npm install
+        run: npm ci
       
       - name: build
         run: npm run build
       
       - name: deploy
-        run: npm run deploy
-      
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+      - env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: result
         run: echo "деплой готов"
   
