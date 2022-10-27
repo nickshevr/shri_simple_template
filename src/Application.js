@@ -4,7 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 
-export const Application = () => {
+export function Application() {
   return (
     <div>
       <nav>
@@ -23,4 +23,4 @@ export const Application = () => {
       </Switch>
     </div>
   );
-};
+}

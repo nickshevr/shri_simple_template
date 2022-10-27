@@ -5,8 +5,8 @@ const items = ['Позавтракать', 'Сходить в магазин', '
 const DEFAULT_STATE = { items, done: {}, text: '' };
 
 // actions
-export const addItem = text => ({ type: 'ADD_ITEM', text });
-export const setText = text => ({ type: 'SET_TEXT', text });
+export const addItem = (text) => ({ type: 'ADD_ITEM', text });
+export const setText = (text) => ({ type: 'SET_TEXT', text });
 export const setDone = (index, done) => ({ type: 'SET_DONE', index, done });
 
 // reducer

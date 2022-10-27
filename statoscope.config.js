@@ -9,9 +9,9 @@ module.exports = {
       ],
       '@statoscope/webpack/entry-download-size-limits': [
         'error',
-        { global: { maxSize: 3 * 1024 * 100 } },
+        { global: { maxSize: 4 * 1024 * 100 } },
       ],
-      '@statoscope/webpack/no-packages-dups': ['error'],
+      // '@statoscope/webpack/no-packages-dups': ['error'],
     },
   },
 };

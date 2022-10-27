@@ -23,10 +23,10 @@
         "start": "webpack serve",
         "build": "npx webpack",
         "test": "echo \"test)\"",
-        "lint:js": "echo \"implement me\"",
-        "lint:css": "echo \"implement me\"",
-        "analyze": "echo \"implement me\"",
-        "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
+        "lint:js": "eslint '**/*.{js,jsx}' --fix",
+        "lint:css": "npx stylelint **/*.css",
+        "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
+        "deploy": "npx gh-pages -d dist"
     },
     "devDependencies": {
         "@babel/core": "^7.19.3",
@@ -43,6 +43,7 @@
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-react": "^7.31.10",
         "eslint-plugin-react-hooks": "^4.6.0",
+        "gh-pages": "^4.0.0",
         "html-loader": "^4.2.0",
         "html-webpack-plugin": "^5.5.0",
         "style-loader": "^3.3.1",

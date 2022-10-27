@@ -5,16 +5,16 @@ import { UUID } from '../utils/uuid';
 
 import styles from './index.module.css';
 
-export const TodoItem = props => {
+export function TodoItem(props) {
   const { index } = props;
 
   const dispatch = useDispatch();
-  const text = useSelector(state => state.items[index]);
-  const done = useSelector(state => state.done[index]);
+  const text = useSelector((state) => state.items[index]);
+  const done = useSelector((state) => state.done[index]);
 
   const onChange = useCallback(
     () => dispatch(setDone(index, !done)),
-    [index, done, dispatch]
+    [index, done, dispatch],
   );
 
   return (
@@ -25,4 +25,4 @@ export const TodoItem = props => {
       </div>
     </div>
   );
-};
+}

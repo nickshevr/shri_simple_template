@@ -1,6 +1,6 @@
 import { TodoList } from '../components/TodoList';
 
-export const Home = () => {
+export function Home() {
   return (
     <>
       <h1 data-testid="page-title">Home</h1>
@@ -8,4 +8,4 @@ export const Home = () => {
       <TodoList />
     </>
   );
-};
+}

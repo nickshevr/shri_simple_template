@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, setText } from '../store';
 import { TodoItem } from './TodoItem';
 
-export const TodoList = () => {
+export function TodoList() {
   const dispatch = useDispatch();
 
-  const items = useSelector(state => state.items);
-  const text = useSelector(state => state.text);
+  const items = useSelector((state) => state.items);
+  const text = useSelector((state) => state.text);
 
   const onChange = useCallback(
     ({ target }) => {
       dispatch(setText(target.value));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const onClick = useCallback(() => {
@@ -36,4 +36,4 @@ export const TodoList = () => {
       </div>
     </div>
   );
-};
+}
