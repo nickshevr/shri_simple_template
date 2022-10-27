@@ -44,10 +44,13 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: first step
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
         
       - name: build dep
         run: npm ci
