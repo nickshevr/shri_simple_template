@@ -50,14 +50,8 @@ jobs:
       - name: build
         run: npm run build
       
-      - name: git config email
-        run: git config --global user.email "greendiesel228@gmail.com"
-      
-      - name: git config name
-        run: git config --global user.name "JeeEssEm"
-      
       - name: deploy
-        run: npm run deploy
+        run: npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
       
       - name: result
         run: echo "деплой готов"
