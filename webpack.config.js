@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StatoscopePlugin = require("@statoscope/webpack-plugin").default;
 
 const config = {
+  target: "web",
   entry: {
     about: "./src/pages/About.js",
     home: "./src/pages/Home.js",
