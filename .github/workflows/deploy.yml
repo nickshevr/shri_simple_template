@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "📦 Deployment has started."
-      - run: pnpm run deploy
+      - run: |
+        npm install
+        npm run deploy
       - run: echo "🎉 Successfully deployed!"
