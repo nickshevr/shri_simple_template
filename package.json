@@ -11,6 +11,7 @@
     "postcss-loader": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-is": "^18.2.0",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -19,7 +20,8 @@
     "redux-observable": "^2.0.0",
     "rxjs": "^7.1.0",
     "sass-loader": "^13.1.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "start": "npm run build && npm run serve",
