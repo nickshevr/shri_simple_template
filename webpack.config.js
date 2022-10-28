@@ -63,6 +63,7 @@ const config = {
 
     // @TODO optimizations
     optimization: {
+        // Я не знаю что тут происходит, это всё github copilot, я ему верю
         usedExports: true,
         runtimeChunk: {name: 'runtime'},
         splitChunks: {
