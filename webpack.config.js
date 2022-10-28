@@ -74,6 +74,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    clean: true,
     library: {
       name: 'UUID',
       type: 'var',

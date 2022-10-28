@@ -1,13 +1,12 @@
-name: pull_rq
+name: Deploy
 
 on:
-  pull_request:
   push:
     branches:
       - master
 
 jobs:
-  lint:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,7 +16,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      # Build
       - run: npm ci
+      - run: npm install
       - run: npm run build
-      - run: npm run lint:js
-      - run: npm run lint:css
+      # Deploy
+      - run: npm run deploy
