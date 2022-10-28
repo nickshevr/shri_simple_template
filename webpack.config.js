@@ -2,6 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
 
+const webpack = require('webpack');
+require('dotenv').config();
+
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 const config = {
     entry: {
@@ -21,10 +25,14 @@ const config = {
             saveOnlyStats: false,
             open: false,
         }),
+        new webpack.DefinePlugin({
+            'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+          }),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
+        publicPath: 'auto',
     },
     module: {
         rules: [
@@ -44,19 +52,34 @@ const config = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            // file loader
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                exclude: /node_modules/,
+                use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
+            }
         ],
     },
 
     // @TODO optimizations
     optimization: {
         usedExports: true,
-        runtimeChunk: {name: 'runtime'}
+        runtimeChunk: {name: 'runtime'},
+        splitChunks: {
+            chunks: 'all',
+            minSize: 0,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            }
+        }
     },
-    // @TODO lodash treeshaking
-    // Done 👆
+    // @TODO lodash treeshaking Done 👆
     // @TODO chunk for lodash
-    // @TODO chunk for runtime
-    // Done 👆
+    // @TODO chunk for runtime Done 👆
     // @TODO fallback for crypto
 };
 

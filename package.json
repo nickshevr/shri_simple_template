@@ -6,6 +6,7 @@
   "dependencies": {
     "cosmiconfig": "^7.0.1",
     "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -23,10 +24,10 @@
     "build": "webpack --mode=production --config ./webpack.config.js",
     "lint:js": "npx eslint src --config .eslintrc.js --fix",
     "lint:css": "npx stylelint --config .stylelintrc.json --fix \"src/**/*.css\"",
-    "analyze": "echo \"implement me\"",
+    "analyze": "statoscope validate -i stats.json",
     "deploy": "gh-pages -d dist",
-    "prepare": "echo \"implement me\"",
-    "validate": "echo \"implement me\""
+    "prepare": "husky install",
+    "validate": "webpack --json stats.json"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -34,6 +35,8 @@
     "@babel/preset-react": "^7.18.6",
     "@statoscope/cli": "^5.24.0",
     "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
+    "@statoscope/stats-validator-reporter-console": "^5.22.0",
+    "@statoscope/stats-validator-reporter-stats-report": "^5.24.0",
     "@statoscope/webpack-plugin": "^5.24.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.26.0",
@@ -43,8 +46,10 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.2.0",
+    "file-loader": "^6.2.0",
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-webpack-plugin": "^3.3.0",
