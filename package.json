@@ -24,7 +24,7 @@
         "start": "webpack serve",
         "build": "npx webpack",
         "test": "echo \"test)\"",
-        "lint:js": "eslint 'src/**.{js,jsx}'",
+        "lint:js": "eslint 'src/**.{js,jsx}' --fix",
         "lint:css": "npx stylelint **/*.css",
         "validate": "statoscope validate -i stats.json --config=./statoscope.config.js",
         "deploy": "npx gh-pages -d dist"
