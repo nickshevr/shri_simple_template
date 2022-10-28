@@ -21,18 +21,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: actions/checkout@v3
       - name: eslint
-      - run: npm run lint:js
+        uses: actions/checkout@v3
+        run: npm run lint:js
 
-      - uses: actions/checkout@v3
       - name: stylelint
-      - run: npm run lint:css
+        uses: actions/checkout@v3
+        run: npm run lint:css
 
-      - uses: actions/checkout@v3
       - name: webpack build
-      - run: npm run build
+        uses: actions/checkout@v3
+        run: npm run build
 
-      - uses: actions/checkout@v3
       - name: GitHub pages deploy
-      - run: npm run deploy
+        uses: actions/checkout@v3
+        run: npm run deploy
