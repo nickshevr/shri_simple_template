@@ -16,9 +16,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      # Build
-      - run: npm ci
-      - run: npm install
-      - run: npm run build
-      # Deploy
-      - run: npm run deploy
+      - name: Build
+        run: | 
+          npm ci
+          npm install
+          npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
