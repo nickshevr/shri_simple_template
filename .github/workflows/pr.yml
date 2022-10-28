@@ -2,8 +2,13 @@ name: New Pull Request
 run-name: New Pull Request
 on: [pull_request]
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pnpm/action-setup@v2.2.4
   deploy:
     runs-on: ubuntu-latest
+    uses: pnpm/action-setup@v2.2.4
     steps:
       - run: echo "🤯 New pull request!"
       - run: pnpm run lint:js && pnpm run lint:css && pnpm run build && pnpm run analyze

@@ -2,6 +2,10 @@ name: Deployment
 run-name: Deployment
 on: [push]
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pnpm/action-setup@v2.2.4
   deploy:
     runs-on: ubuntu-latest
     steps:
