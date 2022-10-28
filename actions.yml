@@ -1,0 +1,11 @@
+name: Actions
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on: [pull_request]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: lint:js
+      - run: lint:css
+      - run: build
+      - run: deploy
