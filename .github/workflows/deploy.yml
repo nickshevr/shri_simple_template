@@ -1,0 +1,9 @@
+name: Deployment
+run-name: Deployment
+on: [push]
+jobs:
+  deploy:
+    steps:
+      - run: echo "📦 Deployment has started."
+      - run: pnpm run deploy
+      - run: echo "🎉 Successfully deployed!"

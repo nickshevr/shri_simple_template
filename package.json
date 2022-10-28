@@ -24,14 +24,14 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "npm run build && npm run serve",
-    "serve": "npx webpack serve",
-    "build": "npx webpack",
+    "start": "npx webpack serve",
+    "build": "npx webpack --mode production",
     "test": "echo \"implement me\"",
-    "lint:js": "npx eslint",
-    "lint:css": "echo \"implement me\"",
-    "analyze": "echo \"implement me\"",
-    "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
+    "lint:js": "npx eslint src",
+    "lint:css": "npx stylelint \"**/*.css\"",
+    "analyze": "statoscope serve stats.json -o",
+    "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -43,11 +43,17 @@
     "babel-loader": "^8.2.5",
     "crypto-browserify": "^3.12.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
+    "gh-pages": "^4.0.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "interpolate-html-plugin": "^4.0.0",
+    "lodash-webpack-plugin": "^0.11.6",
     "sass": "^1.55.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard": "^29.0.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^3.11.1"
