@@ -4,6 +4,9 @@
     "homepage": ".",
     "private": true,
     "dependencies": {
+        "stream": "^0.0.2",
+        "babel-plugin-lodash": "^3.3.4",
+        "bn.js": "^5.2.1",
         "crypto-browserify": "^3.12.0",
         "lodash": "^4.17.21",
         "react": "^17.0.2",
@@ -14,16 +17,19 @@
         "react-scripts": "4.0.3",
         "redux": "^4.1.0",
         "redux-observable": "^2.0.0",
-        "rxjs": "^7.1.0"
+        "rxjs": "^7.1.0",
+        "uuid": "^9.0.0"
+
     },
     "scripts": {
-        "start": "echo \"implement me\"",
-        "build": "echo \"implement me\"",
-        "test": "echo \"implement me\"",
-        "lint:js": "echo \"implement me\"",
-        "lint:css": "echo \"implement me\"",
-        "analyze": "echo \"implement me\"",
-        "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
+        "build": "webpack --config webpack.config.js --mode production",
+        "start": "npx webpack serve --mode production",
+        "lint:js": "eslint \"./src//*.js\" --fix",
+        "lint:css": "npx stylelint \"./src//*.css\" --fix",
+        "report": "statoscope generate stats.json --output report.html -o",
+        "analyze": "npm run validate && npm run report || npm run report",
+        "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
+        "deploy": "npm run build && gh-pages -d dist"
     },
     "devDependencies": {
         "@babel/core": "^7.19.3",
@@ -33,9 +39,16 @@
         "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
         "@statoscope/webpack-plugin": "^5.24.0",
         "babel-loader": "^8.2.5",
+        "css-loader": "^6.7.1",
         "html-webpack-plugin": "^5.5.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
-        "webpack-dev-server": "^3.11.1"
+        "webpack-dev-server": "^3.11.1",
+        "eslint": "^7.32.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "gh-pages": "^4.0.0",
+        "lodash-webpack-plugin": "^0.11.6",
+        "stylelint": "^14.14.0",
+        "stylelint-config-standard": "^29.0.0"
     }
 }

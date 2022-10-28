@@ -6,6 +6,9 @@ const config = {
     entry: {
         about: './src/pages/About.js',
         home: './src/pages/Home.js',
+        index: {import: './src/index.js',
+            dependOn: ['about', 'home']
+        }
     },
     plugins: [
         new HtmlWebpackPlugin(),
@@ -13,7 +16,7 @@ const config = {
             saveStatsTo: 'stats.json',
             saveOnlyStats: false,
             open: false,
-        }),
+        })
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -21,8 +24,15 @@ const config = {
     },
     module: {
         rules: [
-            // @TODO js rule
-            // @TODO css rule
+            { test: /\.css$/, use: 'css-loader' },
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
+                options:{
+                    presets:[ "@babel/preset-react"]
+                }
+            }
         ],
     },
     // @TODO optimizations
