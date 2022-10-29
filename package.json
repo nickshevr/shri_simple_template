@@ -31,7 +31,7 @@
     "lint:css": "npx stylelint \"**/*.css\"",
     "analyze": "statoscope serve stats.json -o",
     "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist -u \"Vladislav Gubarev <extrapoisonouscake@gmail.com>\""
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
