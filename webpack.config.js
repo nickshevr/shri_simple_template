@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
+const LodashWebpackPlugin = require('lodash-webpack-plugin')
 
 const config = {
     entry: {
@@ -11,12 +12,22 @@ const config = {
         }
     },
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './public', 'index.html'),
+            favicon: './public/favicon.ico',
+        }),
         new StatoscopePlugin({
             saveStatsTo: 'stats.json',
             saveOnlyStats: false,
             open: false,
-        })
+        }),
+        new LodashWebpackPlugin({
+            coercions: true,
+            exotics: true,
+            memoizing: true,
+            collections: true,
+            paths: true
+        }),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -24,22 +35,48 @@ const config = {
     },
     module: {
         rules: [
-            { test: /\.css$/, use: 'css-loader' },
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/i,
+                use: {
+                loader: 'babel-loader',
+                options: { presets: [ '@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }]]},
+                },
                 exclude: /(node_modules)/,
-                loader: "babel-loader",
-                options:{
-                    presets:[ "@babel/preset-react"]
-                }
+                resolve: { extensions: ['.js', '.jsx'] },
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
             }
-        ],
+        ]
     },
-    // @TODO optimizations
-    // @TODO lodash treeshaking
-    // @TODO chunk for lodash
-    // @TODO chunk for runtime
-    // @TODO fallback for crypto
+    target: 'web',
+    resolve: {
+        fallback: {
+            'crypto': require.resolve('crypto'),
+        },
+        alias: {
+            'crypto-browserify': path.resolve(__dirname, 'src/crypto-fallback.js'),
+            'react-is': path.resolve(__dirname, 'node_modules/react-is/cjs/react-is.production.min.js')
+        },
+    },
+    optimization: {
+        minimize: true,
+        emitOnErrors: true,
+        concatenateModules: true,
+        moduleIds: 'size',
+        mergeDuplicateChunks: true,
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'async'
+        }
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 8080,
+        open: true
+    }
 };
 
 module.exports = config;

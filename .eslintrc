@@ -1,0 +1,11 @@
+{
+  "extends": ["airbnb"],
+  "ignorePatterns": [ "/node_modules/", "webpack.config.js", "statoscope.config.js", "TodoList.js", "TodoItem.js"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "no-undef": "off",
+    "default-param-last": "warn"
+  }
+}
