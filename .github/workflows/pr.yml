@@ -12,9 +12,9 @@ jobs:
     steps:
       - run: echo "🤯 New pull request!"
       - run: |
-        npm install
-        npm run lint:js
-        npm run lint:css
-        npm run build
-        npm run analyze
+         npm install
+         npm run lint:js
+         npm run lint:css
+         npm run build
+         npm run analyze
       - run: echo "🎉 Successfully done something!"

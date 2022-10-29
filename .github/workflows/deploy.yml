@@ -11,6 +11,6 @@ jobs:
     steps:
       - run: echo "📦 Deployment has started.."
       - run: |
-        npm install
-        npm run deploy
+         npm install
+         npm run deploy
       - run: echo "🎉 Successfully deployed!"
