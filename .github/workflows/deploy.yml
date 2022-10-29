@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "📦 Deployment has started."
+      - run: echo "📦 Deployment has started.."
       - run: |
         npm install
         npm run deploy
