@@ -1,16 +1,19 @@
 name: Deployment
 run-name: Deployment
-on: [push]
+on: push
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: pnpm/action-setup@v2.2.4
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - run: echo "📦 Deployment has started.."
       - run: |
          npm install
          npm run deploy
+        env:
+          CI: true
       - run: echo "🎉 Successfully deployed!"
