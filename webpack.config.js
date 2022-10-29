@@ -39,24 +39,6 @@ const config = {
     ],
   },
   resolve: {
-    alias: {
-      bn: path.join(
-        path.MONOREPO_ROOT,
-        'node_modules/bn.js/lib/bn.js',
-      ),
-      'bn.js': path.join(
-        path.MONOREPO_ROOT,
-        'node_modules/bn.js/lib/bn.js',
-      ),
-      react: path.join(
-        path.MONOREPO_ROOT,
-        'node_modules/react-is/index.js',
-      ),
-      'react.js': path.join(
-        path.MONOREPO_ROOT,
-        'node_modules/react-is/index.js',
-      ),
-    },
     fallback: {
       crypto: require.resolve('crypto-browserify'),
       stream: require.resolve('stream-browserify'),
