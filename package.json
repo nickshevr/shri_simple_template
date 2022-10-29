@@ -9,6 +9,7 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "postcss": "^8.4.18",
     "postcss-loader": "^7.0.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^18.2.0",
@@ -28,7 +29,7 @@
     "build": "npx webpack --mode production",
     "test": "echo \"implement me\"",
     "lint:js": "npx eslint src",
-    "lint:css": "npx stylelint \"**/*.css\"",
+    "lint:css": "npx stylelint \"src/**/*.css\"",
     "analyze": "statoscope serve stats.json -o",
     "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
     "deploy": "npm run build && gh-pages -d dist -u \"Vladislav Gubarev <extrapoisonouscake@gmail.com>\""

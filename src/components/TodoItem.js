@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDone } from '../store';
 import {UUID} from '../utils/uuid';
@@ -22,4 +23,7 @@ export const TodoItem= props => {
             </div>
         </div>
     );
+}
+TodoItem.propTypes = {
+    index:PropTypes.number
 }
