@@ -13,7 +13,7 @@ module.exports = {
         // ensures that the build time has not exceeded the limit (10 sec)
         '@statoscope/webpack/build-time-limits': ['error', 10000],
         // ensures that bundle doesn't use specified packages
-        '@statoscope/webpack/restricted-packages': ['error', ['lodash', 'browserify-crypto']],
+        '@statoscope/webpack/restricted-packages': ['error', [ 'browserify-crypto']],
         // ensures that bundle hasn't package duplicates
         '@statoscope/webpack/no-packages-dups': ['error'],
         // ensure that the download time of entrypoints is not over the limit (3 sec)
