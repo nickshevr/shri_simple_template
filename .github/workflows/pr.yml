@@ -16,5 +16,5 @@ jobs:
          npm run lint:js
          npm run lint:css
          npm run build
-         npm run analyze
+         npm run summary
       - run: echo "🎉 Successfully done something!"
