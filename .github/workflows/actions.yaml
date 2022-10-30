@@ -5,7 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: lint:js
-      - run: lint:css
-      - run: build
-      - run: deploy
+      - run: npm run lint:js
+      - run: npm run lint:css
+      - run: npm run build
+      - run: npm run deploy
