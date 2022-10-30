@@ -5,8 +5,7 @@ const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
 
 const config = {
   entry: {
-    about: './src/pages/About.js',
-    home: './src/pages/Home.js',
+    import: './src/index.js',
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -29,7 +28,12 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['lodash'],
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -46,9 +50,12 @@ const config = {
   },
   optimization: {
     minimize: true,
-    usedExports: true,
+    concatenateModules: true,
+    runtimeChunk: 'single',
     splitChunks: {
+      minChunks: 2,
       chunks: 'all',
+      minSize: 0,
     },
   },
 // @TODO lodash treeshaking
