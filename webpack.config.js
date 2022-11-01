@@ -32,6 +32,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
+        clean: true
     },
     module: {
         rules: [
@@ -41,7 +42,7 @@ const config = {
                 loader: 'babel-loader',
                 options: { presets: [ '@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }]]},
                 },
-                exclude: /(node_modules)/,
+                exclude: [/(node_modules)/, /(dist)/],
                 resolve: { extensions: ['.js', '.jsx'] },
             },
             {
