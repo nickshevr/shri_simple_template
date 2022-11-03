@@ -25,6 +25,7 @@
         "start": "npx webpack serve --mode production",
         "lint:js": "eslint \"./src//*.js\" --fix",
         "lint:css": "npx stylelint \"./src//*.css\" --fix",
+        "test-ci": "CI=true npm test -- --reporters=\"default\" --reporters=\"jest-html-reporter\" --reporters=\"jest-teamcity\"",
         "report": "statoscope generate stats.json --output report.html -o",
         "analyze": "npm run validate && npm run report || npm run report",
         "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js",
