@@ -16,6 +16,7 @@
         "react-scripts": "4.0.3",
         "redux": "^4.1.0",
         "redux-observable": "^2.0.0",
+        "remove-files-webpack-plugin": "^1.5.0",
         "rxjs": "^7.1.0",
         "stream": "^0.0.2",
         "uuid": "^9.0.0"
