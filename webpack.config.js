@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
 const LodashWebpackPlugin = require('lodash-webpack-plugin')
-const RemovePlugin = require('remove-files-webpack-plugin');
 
 const config = {
     entry: {
@@ -29,13 +28,6 @@ const config = {
             collections: true,
             paths: true
         }),
-        new RemovePlugin({
-            after: {
-                include: [
-                    './dist'
-                ]
-            }
-        })
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
